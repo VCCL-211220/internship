@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #111827;
+  color: #f9fafb;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 28px 48px;
+  background-color: #111827;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 28px;
+  letter-spacing: 2px;
+}
+
+.menu-wrapper {
+  max-width: 1180px;
+  margin: 0 auto 28px auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0 16px;
+}
+
+.chart-menu {
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-menu .ant-menu-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.chart-card {
+  max-width: 1180px;
+  margin: 0 auto;
+  background-color: #111827;
+  border-radius: 16px;
+  padding: 24px 32px;
+}
