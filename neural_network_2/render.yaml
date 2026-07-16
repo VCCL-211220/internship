@@ -5,7 +5,7 @@ services:
     plan: free
     rootDir: neural_network_2/backend
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --timeout 180
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
