@@ -3,7 +3,7 @@ services:
     name: handwritten-digit-backend
     runtime: python
     plan: free
-    rootDir: backend
+    rootDir: neural_network/backend
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
@@ -13,7 +13,7 @@ services:
   - type: web
     name: handwritten-digit-frontend
     runtime: static
-    rootDir: frontend
+    rootDir: neural_network/frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
