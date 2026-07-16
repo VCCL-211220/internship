@@ -17,10 +17,9 @@ network = None
 
 
 def train_model():
-    # 设置神经网络参数
     input_nodes = 784
-    hidden_nodes = 20
-    output_nodes = 1
+    hidden_nodes = 100
+    output_nodes = 10
     learning_rate = 0.3
 
     model = NeuralNetwork(
@@ -30,16 +29,13 @@ def train_model():
         learning_rate
     )
 
-    # 根据 app.py 当前所在位置，找到 mnist_train_100.csv
     base_dir = os.path.dirname(os.path.abspath(__file__))
     train_path = os.path.join(base_dir, "mnist", "mnist_train_100.csv")
 
-    # 读取 MNIST 训练数据
     training_data_file = open(train_path, "r")
     training_data_list = training_data_file.readlines()
     training_data_file.close()
 
-    # 训练模型
     epochs = 1
     max_train_records = 10
 
@@ -61,7 +57,6 @@ def train_model():
                 break
 
     return model
-
 
 def get_model():
     global network
