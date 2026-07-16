@@ -1,0 +1,55 @@
+.page {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.card {
+  width: 900px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.upload-box {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.preview-box {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.preview-box p {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.preview-image {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.loading {
+  margin-top: 20px;
+  text-align: center;
+  color: #1677ff;
+}
+
+.result-box {
+  margin-top: 24px;
+}
+
+.result-box h2 {
+  text-align: center;
+  color: #222;
+}
