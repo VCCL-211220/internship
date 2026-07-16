@@ -19,8 +19,8 @@ network = None
 def train_model():
     # 设置神经网络参数
     input_nodes = 784
-    hidden_nodes = 100
-    output_nodes = 10
+    hidden_nodes = 20
+    output_nodes = 1
     learning_rate = 0.3
 
     model = NeuralNetwork(
@@ -40,8 +40,8 @@ def train_model():
     training_data_file.close()
 
     # 训练模型
-    epochs = 5
-    max_train_records = 100
+    epochs = 1
+    max_train_records = 10
 
     for epoch in range(epochs):
         count = 0
