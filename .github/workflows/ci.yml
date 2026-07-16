@@ -20,13 +20,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install backend dependencies
-        working-directory: neural_network/backend
+        working-directory: neural_network_2/backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Check backend syntax
-        working-directory: neural_network/backend
+        working-directory: neural_network_2/backend
         run: |
           python -m py_compile app.py neural_network.py tools.py
 
@@ -43,9 +43,9 @@ jobs:
           node-version: "20"
 
       - name: Install frontend dependencies
-        working-directory: neural_network/frontend
+        working-directory: neural_network_2/frontend
         run: npm install
 
       - name: Build frontend
-        working-directory: neural_network/frontend
+        working-directory: neural_network_2/frontend
         run: npm run build
