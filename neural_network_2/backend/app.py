@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 
 from neural_network import NeuralNetwork
 from tools import get_inputs, get_targets, get_max_index, scale_inputs
@@ -29,8 +30,12 @@ def train_model():
         learning_rate
     )
 
+    # 根据 app.py 当前所在位置，找到 mnist_train_100.csv
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    train_path = os.path.join(base_dir, "mnist", "mnist_train_100.csv")
+
     # 读取 MNIST 训练数据
-    training_data_file = open("mnist/mnist_train_100.csv", "r")
+    training_data_file = open(train_path, "r")
     training_data_list = training_data_file.readlines()
     training_data_file.close()
 
@@ -65,6 +70,14 @@ def get_model():
         network = train_model()
 
     return network
+
+
+@app.route("/api/health", methods=["GET"])
+def health_check():
+    return jsonify({
+        "success": True,
+        "message": "backend is running"
+    })
 
 
 @app.route("/api/predict", methods=["POST"])
