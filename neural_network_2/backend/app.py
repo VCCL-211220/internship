@@ -82,47 +82,55 @@ def health_check():
 
 @app.route("/api/predict", methods=["POST"])
 def predict_digit():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    if data is None:
+        if data is None:
+            return jsonify({
+                "success": False,
+                "message": "没有收到 JSON 数据"
+            }), 400
+
+        pixels = data.get("pixels")
+
+        if pixels is None:
+            return jsonify({
+                "success": False,
+                "message": "缺少 pixels 数据"
+            }), 400
+
+        if len(pixels) != 784:
+            return jsonify({
+                "success": False,
+                "message": "pixels 长度必须是 784"
+            }), 400
+
+        model = get_model()
+
+        inputs = scale_inputs(pixels)
+
+        outputs = model.query(inputs)
+
+        label = get_max_index(outputs)
+
+        scores = []
+
+        for value in outputs:
+            scores.append(round(value, 4))
+
+        return jsonify({
+            "success": True,
+            "label": label,
+            "scores": scores
+        })
+
+    except Exception as error:
+        print("Predict error:", error)
+
         return jsonify({
             "success": False,
-            "message": "没有收到 JSON 数据"
-        }), 400
-
-    pixels = data.get("pixels")
-
-    if pixels is None:
-        return jsonify({
-            "success": False,
-            "message": "缺少 pixels 数据"
-        }), 400
-
-    if len(pixels) != 784:
-        return jsonify({
-            "success": False,
-            "message": "pixels 长度必须是 784"
-        }), 400
-
-    model = get_model()
-
-    inputs = scale_inputs(pixels)
-
-    outputs = model.query(inputs)
-
-    label = get_max_index(outputs)
-
-    scores = []
-
-    for value in outputs:
-        scores.append(round(value, 4))
-
-    return jsonify({
-        "success": True,
-        "label": label,
-        "scores": scores
-    })
-
+            "message": str(error)
+        }), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
